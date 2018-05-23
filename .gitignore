@@ -1,3 +1,4 @@
+cache_middleware/cache/*
 venv
 *.pyc
 staticfiles
