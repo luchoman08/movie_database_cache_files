@@ -30,6 +30,7 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    'cache_middleware.apps.CacheMiddlewareConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

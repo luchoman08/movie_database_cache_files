@@ -7,7 +7,7 @@ import json
 from enum import Enum
 import os.path
 BASE_URL = "http://files.tmdb.org/p/exports"
-CACHE_FOLDER = "cache_files"
+CACHE_FOLDER = "cache_middleware/cache_files"
 import datetime
 class TMDBResource(Enum):
     TVSERIES = 'tv_series'    
@@ -98,7 +98,7 @@ def getJsonMoviesIds():
     """
     return getOrderedJsonResource(TMDBResource.MOVIE)
 
-def getJsonPersonIds():
+def getJsonPeopleIds():
     """Download the daily gz backup of all movies in tmdb
     Returns:
         list_of_elements(list): json list than contain all the objects in file downloaded from url, ordered by popularity
@@ -158,12 +158,15 @@ def web_gz_to_json(url, resource=None):
 def loadJsonCachedFileResource(resource):
     if( isCached(resource) ):
         with open(CACHE_FOLDER + '/' + get_generated_file_name(resource, extension='json')) as json_file:
-            return json.load(json_file)
+            ret = json.load(json_file)
+            json_file.close()
+            return ret
+            
 def saveJsonToCache(resource, json_data):
-    text_file = open(CACHE_FOLDER + '/' + get_generated_file_name(resource, extension='json'), "w+")
-    json.dump(json_data, text_file)
-    text_file.close()
+    with open(CACHE_FOLDER + '/' + get_generated_file_name(resource, extension='json'), "w+") as text_file:
+        json.dump(json_data, text_file)
+        text_file.close()
 print (getJsonProductionCompanies()[0])
 print (getJsonMoviesIds()[0])
 print (getJsonTvSeriesIds()[0])
-print (getJsonPersonIds()[0])
+print (getJsonPeopleIds()[0])
