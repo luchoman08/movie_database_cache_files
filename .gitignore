@@ -1,0 +1,6 @@
+cache_middleware/cache/*
+venv
+*.pyc
+staticfiles
+.env
+*.sqlite3
