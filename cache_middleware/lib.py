@@ -9,6 +9,9 @@ import os.path
 BASE_URL = "http://files.tmdb.org/p/exports"
 CACHE_FOLDER = "cache_middleware/cache_files"
 import datetime
+id not os.path.exists(CACHE_FOLDER):
+    os.makedirs(CACHE_FOLDER)
+
 class TMDBResource(Enum):
     TVSERIES = 'tv_series'    
     MOVIE = 'movie'   
