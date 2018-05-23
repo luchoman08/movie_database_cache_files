@@ -169,7 +169,4 @@ def saveJsonToCache(resource, json_data):
     with open(CACHE_FOLDER + '/' + get_generated_file_name(resource, extension='json'), "w+") as text_file:
         json.dump(json_data, text_file)
         text_file.close()
-print (getJsonProductionCompanies()[0])
-print (getJsonMoviesIds()[0])
-print (getJsonTvSeriesIds()[0])
-print (getJsonPeopleIds()[0])
+
